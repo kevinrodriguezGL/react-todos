@@ -1,5 +1,5 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { memo } from 'react';
+import { useDispatch } from 'react-redux';
 import { Card, Button } from 'semantic-ui-react';
 import { editTodo, removeTodo } from '../store/todos/actions';
 
@@ -18,21 +18,22 @@ const styles = {
   }
 }
 
-const TodoCard = ({ todo, editTodo, removeTodo }) => {
+const TodoCard = memo(({ todo }) => {
+  const dispatch = useDispatch();
   const handleUndo = () => {
-    editTodo({
+    dispatch(editTodo({
       ...todo,
       done: false
-    });
+    }));
   }
   const handleRemove = () => {
-    removeTodo(todo);
+    dispatch(removeTodo(todo));
   }
   const handleComplete = () => {
-    editTodo({
+    dispatch(editTodo({
       ...todo,
       done: true
-    });
+    }));
   }
   const renderButtons = (isDone) => {
     return isDone ? (
@@ -66,6 +67,6 @@ const TodoCard = ({ todo, editTodo, removeTodo }) => {
       </Card.Content>
     </Card>
   );
-};
+});
 
-export default connect(null, { editTodo, removeTodo })(TodoCard);
+export default TodoCard;

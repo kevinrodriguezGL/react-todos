@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Form, Input, Button, Grid, GridRow } from 'semantic-ui-react';
 import uuidv4 from 'uuid/v4';
 
@@ -11,14 +11,15 @@ const styles = {
   }
 };
 
-const AddTodo = ({ addTodo }) => {
+const AddTodo = () => {
+  const dispatch = useDispatch();
   const [ title, setTitle ] = useState('');
   const handleSubmit = () => {
-    addTodo({
+    dispatch(addTodo({
       id: uuidv4(),
       title,
       done: false
-    });
+    }));
     setTitle('');
   };
   const handleInputChange = (e) => {
@@ -41,4 +42,4 @@ const AddTodo = ({ addTodo }) => {
   );
 };
 
-export default connect(null, { addTodo })(AddTodo);
+export default AddTodo;
