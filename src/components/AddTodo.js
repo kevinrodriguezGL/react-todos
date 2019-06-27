@@ -20,6 +20,7 @@ const AddTodo = ({ addTodo }) => {
       title,
       done: false
     });
+    setTitle('');
   };
   const handleInputChange = (e) => {
     setTitle(e.target.value);

@@ -7,7 +7,7 @@ const styles = {
   card: {
     marginLeft: 'auto',
     marginRight: 'auto',
-    marginTop: 'initial',
+    marginTop: '1em',
     marginBottom: 'initial'
   }
 }
@@ -40,7 +40,7 @@ const TodoCard = ({ todo, editTodo, removeTodo }) => {
       </div>
     ) : (
       <div className='ui two buttons'>
-        <Button onClick={handleComplete} basic color='green'>
+        <Button onClick={handleComplete} basic color='teal'>
           Complete
         </Button>
       </div>
@@ -49,7 +49,7 @@ const TodoCard = ({ todo, editTodo, removeTodo }) => {
   const { title, done } = todo;
   console.log('RENDERING: TodoCard', title)
   return (
-    <Card style={styles.card}>
+    <Card style={styles.card} color="teal">
       <Card.Content>
         <Card.Description>
           { title }
