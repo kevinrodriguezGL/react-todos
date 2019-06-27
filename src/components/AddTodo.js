@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Form, Input, Button } from 'semantic-ui-react';
+import { Form, Input, Button, Grid, GridRow } from 'semantic-ui-react';
 import uuidv4 from 'uuid/v4';
 
 import { addTodo } from '../store/todos/actions';
@@ -8,7 +8,6 @@ import { addTodo } from '../store/todos/actions';
 const styles = {
   form: {
     marginTop: '1em',
-    textAlign: 'center'
   }
 };
 
@@ -26,15 +25,19 @@ const AddTodo = ({ addTodo }) => {
     setTitle(e.target.value);
   };
   return (
-    <Form style={styles.form} onSubmit={handleSubmit}>
-      <Input
-        required
-        value={title} 
-        onChange={handleInputChange} 
-        placeholder='Title'
-        action={<Button color="teal" type="submit">Add todo</Button>}
-      />
-    </Form>
+    <Grid padded centered>
+      <GridRow>
+        <Form style={styles.form} onSubmit={handleSubmit}>
+          <Input
+            required
+            value={title} 
+            onChange={handleInputChange} 
+            placeholder='Title'
+          />
+          <Button style={{marginLeft: '1em'}} color="teal" type="submit">Add</Button>
+        </Form>
+      </GridRow>
+    </Grid>
   );
 };
 

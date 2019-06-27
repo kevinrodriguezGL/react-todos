@@ -5,15 +5,14 @@ import { connect } from 'react-redux';
 import TodoCard from './TodoCard';
 
 const TodoList = ({ todos }) => {
+  const todoElements = Object.values(todos);
+  const renderCards = (todos) => {
+    return todos.map(todo => <TodoCard key={todo.id} todo={todo}/>)
+  }
   return (
     <Grid padded>
       <GridRow centered>
-        { Object
-          .values(todos)
-          .map(todo => 
-            <TodoCard key={todo.id} todo={todo}/>
-          )
-        }
+        { todoElements.length > 0 ? renderCards(todoElements) : <div>There are no todos, try adding a new one!</div> }
       </GridRow>
     </Grid>
   );

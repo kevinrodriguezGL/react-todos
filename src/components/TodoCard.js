@@ -9,6 +9,12 @@ const styles = {
     marginRight: 'auto',
     marginTop: '1em',
     marginBottom: 'initial'
+  },
+  complete: {
+    textDecoration: 'line-through'
+  },
+  notComplete: {
+    textDecoration: 'initial'
   }
 }
 
@@ -51,7 +57,7 @@ const TodoCard = ({ todo, editTodo, removeTodo }) => {
   return (
     <Card style={styles.card} color="teal">
       <Card.Content>
-        <Card.Description>
+        <Card.Description style={done ? styles.complete : styles.notComplete}>
           { title }
         </Card.Description>
       </Card.Content>
