@@ -1,12 +1,13 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { Grid, GridRow } from 'semantic-ui-react'
+
+import { useTodos } from '../context/todos';
 
 import TodoCard from './TodoCard';
 
 const TodoList = () => {
-  const todos = useSelector((state) => state.todos.todos);
-  const todoElements = Object.values(todos);
+  const todos = useTodos();
+  const todoElements = Object.values(todos.todos);
   const renderCards = (todos) => {
     return todos.map(todo => <TodoCard key={todo.id} todo={todo}/>)
   }

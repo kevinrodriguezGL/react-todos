@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
-import { useDispatch } from 'react-redux';
+import { useTodosDispatch } from '../context/todos';
 import { Card, Button } from 'semantic-ui-react';
-import { editTodo, removeTodo } from '../store/todos/actions';
+import { editTodo, removeTodo } from '../context/todos/actions';
 
 const styles = {
   card: {
@@ -19,7 +19,7 @@ const styles = {
 }
 
 const TodoCard = memo(({ todo }) => {
-  const dispatch = useDispatch();
+  const dispatch = useTodosDispatch();
   const handleUndo = () => {
     dispatch(editTodo({
       ...todo,

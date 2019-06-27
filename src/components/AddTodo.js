@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useTodosDispatch } from '../context/todos';
 import { Form, Input, Button, Grid, GridRow } from 'semantic-ui-react';
 import uuidv4 from 'uuid/v4';
 
-import { addTodo } from '../store/todos/actions';
+import { addTodo } from '../context/todos/actions';
 
 const styles = {
   form: {
@@ -12,7 +12,7 @@ const styles = {
 };
 
 const AddTodo = () => {
-  const dispatch = useDispatch();
+  const dispatch = useTodosDispatch();
   const [ title, setTitle ] = useState('');
   const handleSubmit = () => {
     dispatch(addTodo({
