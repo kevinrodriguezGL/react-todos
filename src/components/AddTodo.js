@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import { Form, Input, Button } from 'semantic-ui-react';
+import uuidv4 from 'uuid/v4';
+
+import { addTodo } from '../store/todos/actions';
 
 const styles = {
   form: {
@@ -8,10 +12,14 @@ const styles = {
   }
 };
 
-const AddTodo = () => {
+const AddTodo = ({ addTodo }) => {
   const [ title, setTitle ] = useState('');
   const handleSubmit = () => {
-    alert(title);
+    addTodo({
+      id: uuidv4(),
+      title,
+      done: false
+    });
   };
   const handleInputChange = (e) => {
     setTitle(e.target.value);
@@ -29,4 +37,4 @@ const AddTodo = () => {
   );
 };
 
-export default AddTodo;
+export default connect(null, { addTodo })(AddTodo);

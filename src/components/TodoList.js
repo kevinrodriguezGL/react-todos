@@ -1,11 +1,24 @@
 import React from 'react';
+import { Grid, GridRow } from 'semantic-ui-react'
+import { connect } from 'react-redux';
 
 import TodoCard from './TodoCard';
 
-const TodoList = () => {
+const TodoList = ({ todos }) => {
   return (
-    <div>Todo list here</div>
+    <Grid padded>
+      <GridRow centered>
+        { Object
+          .values(todos)
+          .map(todo => 
+            <TodoCard key={todo.id} todo={todo}/>
+          )
+        }
+      </GridRow>
+    </Grid>
   );
 };
 
-export default TodoList;
+const mapStateToProps = ({ todos }) => ({ todos: todos.todos });
+
+export default connect(mapStateToProps)(TodoList);
